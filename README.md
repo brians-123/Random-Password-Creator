@@ -2,18 +2,18 @@
 Random Password Creator
 
 ## Description
-This project will create a password generator will be used by employees to generate a random password. The page will be responsive for multiple screen size. 
+This is homework for the third week of the UW/Trilogy coding bootcamp. This project will create a password generator which will be used by employees to generate a random password. The page will be responsive for multiple screen size. 
 Criteria for the user to select is:
 1. Number of characters from 1-128
 2. Upper-case letters, lower-case letters, numbers, and symbols
 
-When done, I will display the new password via an alert.
+Validation will occur along the way to ensure:
+1. The desired password size is a number and greater than 8 and less than 129
+2. At least one character type is selected.
+3. All of the character types have been generated. If not, ask the user to try again
 
-## Your Task
-
-This week’s homework requires you to create an application that an employee can use to generate a random password based on criteria they’ve selected by modifying starter code. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished user interface that is responsive, ensuring that it adapts to multiple screen sizes.
-
-The password can include special characters. If you’re unfamiliar with these, see this [list of Password Special Characters from the OWASP Foundation](https://www.owasp.org/index.php/Password_special_characters).
+When done, the screen will display the new password in the password text box without
+being separated by commas.
 
 ## User Story
 
@@ -49,54 +49,13 @@ The following image shows the web application's appearance and functionality:
 
 ![password generator demo](./Assets/03-javascript-homework-demo.png)
 
-## Grading Requirements
-
-This homework is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the above acceptance criteria plus the following:
-
-  * The homework should not produce any errors in the console when you inspect it using Chrome DevTools.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the homework instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
-
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
 - - -
-© 2020 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+
+## Credits
+User Story Acceptance Criteria and image are © 2020 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+
+## License
+No one may reproduce, distribute, or create derivative works.
+
+## Contributing
+No one may reproduce, distribute, or create derivative works.
