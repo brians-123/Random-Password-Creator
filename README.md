@@ -1,5 +1,5 @@
 # 03-JavaScript-HW
-Random Password Creator
+Random Password Creator https://brians-123.github.io/03-JavaScript-HW/
 
 ## Description
 This is homework for the third week of the UW/Trilogy coding bootcamp. This project will create a password generator which will be used by employees to generate a random password. The page will be responsive for multiple screen size. 
