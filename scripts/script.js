@@ -1,42 +1,15 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-
-console.log('here');
 // Write password to the #password input
 function writePassword() {
-
-
   //calls the generate password function, where user will decide how long
   //and complex the password should be
   var password = generatePassword();
-  console.log('password: ' + password);
+  //references the password index in the html and replaces it with the password
   var passwordText = document.querySelector("#password");
-  // var includeLowerCase = confirm(
-  //   "Do you want to use lowercase letters?");
-  // var includeUpperCase = confirm(
-  //   "Do you want to use uppercase letters?");
-  // var includeNumbers = confirm(
-  //   "Do you want to use numbers?");
-  // var includeSpecial = confirm(
-  //   "Do you want to use special characters?");
-
-  // var includeArray = includeArray.push(prompt(
-  //   "Do you want to use lowercase letters?"));
-  // var includeLowerCase = includeArray.push(prompt(
-  //   "Do you want to use lowercase letters?"));
-  // var includeUpperCase = includeArray.push(prompt(
-  //   "Do you want to use uppercase letters?"));
-  // var includeNumbers = includeArray.push(prompt(
-  //   "Do you want to use numbers?"));
-  // var includeSpecial = includeArray.push(prompt(
-  //   "Do you want to use special characters?"));
-
+  
+  //must use the value to push into the html to prevent value undefined
   passwordText.value = password;
-  // console.log('password text: ' + passwordText);
-  console.log('password text value' + passwordText.value);
-  console.log('password: ' + password);
-
 }
 
 // Add event listener to generate button
@@ -44,15 +17,18 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword(){
   //first we define the arrays that store our character options. 
-  var lowerArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m",
+  var lowerArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m"
     + "n","o","p","q","r","s","t","u","v","w","x","y","z"];
   var numberArray = ["0","1","2","3","4","5","6","7","8","9"];
-  var upperArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M",
+  var upperArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M"
     + "N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-  var specialCharArray = ["!","\"","#","$","%","\&","\'","(",")",
-    + "*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\",
+  var specialCharArray = ["!","\"","#","$","%","\&","\'","(",")"
+    + "*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\"
     + "]","^","_","`","{","|","}","~"];
 
+  //by declaring this within the generatePassword function, it will start clean
+  //each time the button is clicked
+  var myPassword = [];
 
   //this will store all of the values from the character options selected by the user
   var includeArray = [];
@@ -61,22 +37,20 @@ function generatePassword(){
   //validating that it's a number between 8 and 128 and if not, prompt try again
   var numOfCharacters = prompt("Please enter a number from 8 to 128");
   if(numOfCharacters<8 || numOfCharacters >128 || isNaN(numOfCharacters)  ){
-    alert("Invalid input. Please try again.");
-    return;
+    return "Invalid input. Please try again.";
   }
 
-  //
+  //Ask which character types to use and push the full set of characters
+  //into the includeArray to choose from. We also use the true/false
+  //values later to validate that all selected values were chosen
   var  includeLowerCase = confirm("Do you want to use lowercase letters?");
-  console.log("number of characters" + numOfCharacters);
   if(includeLowerCase){
-
     for(i=0; i<lowerArray.length; i++){
       includeArray.push(lowerArray[i]);
     }
   }
 
   var  includeUpperCase = confirm("Do you want to use uppercase letters?");
-  console.log("number of characters" + numOfCharacters);
   if(includeUpperCase){
 
     for(i=0; i<upperArray.length; i++){
@@ -85,7 +59,6 @@ function generatePassword(){
   }
 
   var  includeNumbers = confirm("Do you want to use numbers?");
-  console.log("number of characters" + numOfCharacters);
   if(includeNumbers){
 
     for(i=0; i<numberArray.length; i++){
@@ -94,7 +67,6 @@ function generatePassword(){
   }
 
   var  includeSpecialChar = confirm("Do you want to use special characters?");
-  console.log("number of characters" + numOfCharacters);
   if(includeSpecialChar){
 
     for(i=0; i<specialCharArray.length; i++){
@@ -102,29 +74,36 @@ function generatePassword(){
     }
   }
 
+  //They have to select at least one option
   if(includeArray.length===0){
-    alert("You did not select any options. Please try again.");
-    return;
+    return "You did not select any options. Please try again.";
   }
 
-  console.log("includeArray values: " + includeArray);
-  console.log("includeArray position 0" + includeArray[0]);
-  console.log("lowerArray position 0" + lowerArray[0]);
-  console.log(includeArray.length);
-
-  function randomizeNumber(maxNumber){
-    console.log("includeArray.length: " + includeArray.length)
+  //function to come back with a random number between
+  //0 and the maximum number of characters, then take the value from
+  //the array's index. and pass it back
+  function randomizeCharacter(maxNumber){
     var foundNumber = Math.floor(Math.random() * includeArray.length);
-    console.log("found number: " + foundNumber);
     return foundNumber;
   }
 
-  var myPassword = [];
+  //loop through the number of characters they input, generate a random character
+  //and append to the myPassword variable
+  for(i=0; i<numOfCharacters; i++){
+    myPassword.push(includeArray[(randomizeCharacter(numOfCharacters))]);
+  }
 
-for(i=0; i<numOfCharacters; i++){
-  myPassword.push(includeArray[(randomizeNumber(numOfCharacters))]);
-}
+  //Look in myPassword to see if it contains a value from each required character type 
+  //If one isn't found, let the user know it was unsuccessful and to try again.
+  const haslowerCase = myPassword.some(r=> lowerArray.indexOf(r) >= 0)
+  const hasUpperCase = myPassword.some(r=> upperArray.indexOf(r) >= 0)
+  const hasNumber = myPassword.some(r=> numberArray.indexOf(r) >= 0)
+  const hasSpecialChar = myPassword.some(r=> specialCharArray.indexOf(r) >= 0)
 
-  return myPassword;
-  
+  if(!haslowerCase && includeLowerCase || !hasUpperCase && includeUpperCase || 
+    !hasNumber && includeNumbers || !hasSpecialChar && includeSpecialChar){
+      return 'Your requirements weren\'t met. Please try again.'
+  }
+
+  return myPassword.join("");
 }
