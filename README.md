@@ -1,4 +1,4 @@
-# 03-JavaScript-HW
+# Random Password Creator
 Random Password Creator https://brians-123.github.io/03-JavaScript-HW/
 
 ## Description
